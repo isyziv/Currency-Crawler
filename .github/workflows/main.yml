@@ -1,0 +1,25 @@
+name: hourly-currency-rate
+
+on:
+  schedule:
+    - cron: '3 * * * *'
+
+jobs:
+  hourly-currency-rate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+             pip install requests
+             pip install beautifulsoup4
+      - name: Fetch exchange rate
+        run: python main.py
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add data/
+          git commit -m "Update exchange rate data"
+          git push
