@@ -30,7 +30,8 @@ def create_csv_file(title,exchange_rates):
     month_year = date_time.strftime("%Y_%m")
     file_name = f"{month_year}.csv"
     file_path = os.path.join('data', file_name)
-
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
     file_exists = os.path.isfile(file_path)
     with open(file_path, mode='a', newline='') as csv_file:
         fieldnames = title
