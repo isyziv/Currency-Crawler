@@ -5,7 +5,7 @@ on:
     - cron: '0 * * * *'
 
 jobs:
-  fetch_exchange_rate:
+  hourly-currency-rate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
